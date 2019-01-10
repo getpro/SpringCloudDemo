@@ -1,0 +1,18 @@
+server:
+  port: 6006
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6001/eureka/
+spring:
+  application:
+    name: api-gateway
+zuul:
+  routes:
+    demoapi:
+      path: /demoapi/**
+      serviceId: Demo-API
+  prefix: /v1
+ribbon:
+  eager-load:
+    enabled: true

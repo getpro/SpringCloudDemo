@@ -1,0 +1,23 @@
+server:
+  port: 6004
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: http://git.ngrok.irskj.com/irskj/cloud-demo-config.git
+          username: zyq
+          password: zyq
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:6001/eureka/
+management:
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh

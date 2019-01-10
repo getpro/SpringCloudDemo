@@ -1,0 +1,11 @@
+server:
+  port: 6003
+#启用feign断路器
+feign:
+  hystrix:
+    enabled: true
+turbine:
+  app-config: demo-consumer
+  cluster-name-expression: new String("default")
+  combine-host-port: true
+
