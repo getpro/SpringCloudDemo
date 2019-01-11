@@ -12,6 +12,9 @@ zuul:
     demoapi:
       path: /demoapi/**
       serviceId: Demo-API
+    demoapi2:
+      path: /demoapi2/**
+      serviceId: Demo-API3
   prefix: /v1
 ribbon:
   eager-load:

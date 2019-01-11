@@ -10,6 +10,7 @@ spring:
           uri: http://git.ngrok.irskj.com/irskj/cloud-demo-config.git
           username: zyq
           password: zyq
+#   ËÑË÷Â·¾¶       search-paths:
 eureka:
   client:
     service-url:

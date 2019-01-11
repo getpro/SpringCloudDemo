@@ -39,6 +39,9 @@ public class AccessFilter extends ZuulFilter {
         if(path.contains("api-docs")){
             return null;
         }
+        if(path.contains("demoapi2")){
+            return null;
+        }
         if(accessToken==null){
             requestContext.setSendZuulResponse(false);
             requestContext.setResponseStatusCode(401);

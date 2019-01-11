@@ -15,6 +15,7 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
+		<maven.test.skip>true</maven.test.skip>
 		<java.version>1.8</java.version>
 		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
 	</properties>
@@ -30,6 +31,8 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- 服务注册客户端 -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
@@ -43,6 +46,35 @@
 			<groupId>com.spring4all</groupId>
 			<artifactId>swagger-spring-boot-starter</artifactId>
 			<version>1.7.0.RELEASE</version>
+		</dependency>
+
+		<!-- 声明式、模板化HTTP客户端 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-feign</artifactId>
+			<version>1.4.6.RELEASE</version>
+		</dependency>
+
+		<!-- 熔断器 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix</artifactId>
+			<version>1.4.6.RELEASE</version>
+		</dependency>
+
+		<!-- 熔断器控制台 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+		</dependency>
+		<!-- 服务跟踪 -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-sleuth-zipkin</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -58,7 +90,40 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<!-- 多环境配置 jar启动 spring.profiles.active=app1 -->
+	<profiles>
+		<profile>
+			<id>default</id>
+			<properties>
+				<profiles.active>default</profiles.active>
+			</properties>
+			<activation>
+				<!-- 设置默认激活这个配置 -->
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+		<profile>
+			<id>app1</id>
+			<properties>
+				<profiles.active>app1</profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>app2</id>
+			<properties>
+				<profiles.active>app2</profiles.active>
+			</properties>
+		</profile>
+		<profile>
+			<id>app3</id>
+			<properties>
+				<profiles.active>app3</profiles.active>
+			</properties>
+		</profile>
+	</profiles>
+
 	<build>
+		<finalName>demo-api</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -1,0 +1,17 @@
+server:
+  port: 6008
+
+spring:
+  application:
+    name: stream-rmq
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+  cloud:
+    stream:
+      binders:
+        login-topic:
+          destination: greetings
+          producer:
+            partitionKeyExpression: payload
+            partitionCount: 2

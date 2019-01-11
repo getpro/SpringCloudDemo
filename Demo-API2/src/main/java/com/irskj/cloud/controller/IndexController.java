@@ -1,5 +1,6 @@
 package com.irskj.cloud.controller;
 
+import com.irskj.cloud.service.DemoApi2Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -18,6 +19,8 @@ public class IndexController extends BaseAbstractController{
     private DiscoveryClient discoveryClient;
     @Autowired
     private Registration registration;
+    @Autowired
+    private DemoApi2Service demoApi2Service;
 
 
     @GetMapping("/hello")
@@ -26,7 +29,7 @@ public class IndexController extends BaseAbstractController{
 
         logger.info("/hello ,Service Host:{},Service Id:{}",instance.getHost(),instance.getServiceId());
 
-        return "hello："+accessToken;
+        return "demoapi call："+demoApi2Service.hello();
     }
 
 
