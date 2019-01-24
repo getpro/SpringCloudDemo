@@ -1,29 +1,26 @@
 package sort;
 
-import java.util.Arrays;
-import java.util.Random;
 
 /**
  * 快速排序
+ * 通过一趟排序将待排序记录分割成独立的两部分，其中一部分记录的关键字均比另一部分关键字小，则分别对这两部分继续进行排序，直到整个序列有序。
+ *
+ * 时间复杂度：
  * Created by irskj on 2019/1/19.
  */
-public class FastSort {
+public class FastSort extends BaseSort{
     public static void main(String[] args) {
-        int max = 100;
-        int arr[] = new int[max];
-
-        for(int i=0;i<max;i++){
-            arr[i]=new Random().nextInt(max);
-        }
-
-        System.out.println(Arrays.toString(arr));
-        long start = System.currentTimeMillis();
-        sort(arr,0,arr.length-1);
-        System.out.println("单线程排序时间："+(System.currentTimeMillis()-start)+" ms");
-        System.out.println(Arrays.toString(arr));
-
+        sort(FastSort.class);
     }
 
+    /**
+     * 查找出中轴（默认是最低位low）的在numbers数组排序后所在位置
+     *
+     * @param arr 带查找数组
+     * @param start   开始位置
+     * @param end  结束位置
+     * @return  中轴所在位置
+     */
     public static int dividerAndChange(int[] arr,int start,int end){
         int pivot = arr[start];
 
@@ -49,19 +46,28 @@ public class FastSort {
         return start;
     }
 
+    /**
+     *
+     * @param arr 带排序数组
+     * @param start  开始位置
+     * @param end 结束位置
+     */
     public static void sort(int[] arr,int start,int end){
         if(end - start>1){
             int mid = 0;
-            mid = dividerAndChange(arr,start,end);
-            sort(arr,start,mid);
-            sort(arr,mid+1,end);
+            mid = dividerAndChange(arr,start,end); //将arr数组进行一分为二
+            sort(arr,start,mid); //对低字段表进行递归排序
+            sort(arr,mid+1,end); //对高字段表进行递归排序
         }
     }
 
-    public static void swap(int[] arr,int fromIndex,int toIndex){
-        int temp = arr[fromIndex];
-        arr[fromIndex] = arr[toIndex];
-        arr[toIndex]=temp;
+    @Override
+    public void sort(int[] arr) {
+        sort(arr,0,arr.length-1);
     }
 
+    @Override
+    public String sortName() {
+        return "快速排序";
+    }
 }
