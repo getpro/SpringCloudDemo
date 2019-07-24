@@ -11,6 +11,19 @@
 
     <modules>
         <module>Eureka-Server</module>
+        <module>Api-Gateway</module>
+        <module>Config-Server</module>
+        <module>Demo-API</module>
+        <module>Demo-API2</module>
+        <module>Demo-API3</module>
+        <module>Demo-Consumer</module>
+        <module>hystrix-dashboard</module>
+        <module>sso-auth</module>
+        <module>sso-auth-server</module>
+        <module>Stream-rmq</module>
+        <module>Stream-rmq-Consumer1</module>
+        <module>Stream-rmq-Sender</module>
+        <module>zipkin-server</module>
         <module>algorithm</module>
     </modules>
 </project>
