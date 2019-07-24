@@ -16,8 +16,8 @@ import java.util.Date;
 public class IndexController {
 
     @GetMapping("/hello")
-    public String hello(){
+    public String hello() {
         log.info("call demoapi2:hello");
-        return "demoapi2："+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
+        return "demoapi2：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
     }
 }

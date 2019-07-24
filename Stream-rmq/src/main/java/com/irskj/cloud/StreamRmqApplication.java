@@ -6,9 +6,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class StreamRmqApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(StreamRmqApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(StreamRmqApplication.class, args);
+    }
 
 }
 

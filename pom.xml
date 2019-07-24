@@ -25,5 +25,7 @@
         <module>Stream-rmq-Sender</module>
         <module>zipkin-server</module>
         <module>algorithm</module>
+        <module>dubbo-provider</module>
+        <module>dubbo-consumer</module>
     </modules>
 </project>

@@ -7,7 +7,7 @@ import org.springframework.messaging.MessageChannel;
  * Created by irskj on 2019/1/11.
  */
 public interface SinkSender {
-    String OUTPUT="input";
+    String OUTPUT = "input";
 
     @Output(SinkSender.OUTPUT)
     MessageChannel output();

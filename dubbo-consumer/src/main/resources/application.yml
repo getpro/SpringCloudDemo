@@ -1,0 +1,9 @@
+server:
+  port: 10002
+dubbo:
+  application:
+    name: order
+  consumer:
+    timeout: 5000
+  registry:
+    address: zookeeper://127.0.0.1:2181

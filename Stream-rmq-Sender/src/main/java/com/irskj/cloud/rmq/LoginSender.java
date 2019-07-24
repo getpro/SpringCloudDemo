@@ -18,8 +18,8 @@ import org.springframework.messaging.support.GenericMessage;
 public class LoginSender {
 
     @Bean
-    @InboundChannelAdapter(value = LoginSendBinder.NAME,poller = @Poller(fixedDelay = "2000"))
-    public MessageSource<String> timerMessageSource(){
+    @InboundChannelAdapter(value = LoginSendBinder.NAME, poller = @Poller(fixedDelay = "2000"))
+    public MessageSource<String> timerMessageSource() {
         return new MessageSource<String>() {
             @Override
             public Message<String> receive() {

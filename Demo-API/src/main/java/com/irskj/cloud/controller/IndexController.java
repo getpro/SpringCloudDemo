@@ -14,7 +14,7 @@ import java.util.List;
  * Created by irskj on 2019/1/9.
  */
 @RestController
-public class IndexController extends BaseAbstractController{
+public class IndexController extends BaseAbstractController {
     @Autowired
     private DiscoveryClient discoveryClient;
     @Autowired
@@ -24,17 +24,17 @@ public class IndexController extends BaseAbstractController{
 
 
     @GetMapping("/hello")
-    public String hello(String accessToken){
+    public String hello(String accessToken) {
         ServiceInstance instance = serviceInstance();
 
-        logger.info("/hello ,Service Host:{},Service Id:{}",instance.getHost(),instance.getServiceId());
+        logger.info("/hello ,Service Host:{},Service Id:{}", instance.getHost(), instance.getServiceId());
 
-        return "demoapi call："+demoApi2Service.hello();
+        return "demoapi call：" + demoApi2Service.hello();
     }
 
     @PostMapping("/upload")
-    public String upload(@RequestPart(value = "file") MultipartFile file){
-        logger.info("######### 上传文件:{} ###############",file.getOriginalFilename());
+    public String upload(@RequestPart(value = "file") MultipartFile file) {
+        logger.info("######### 上传文件:{} ###############", file.getOriginalFilename());
         return file.getOriginalFilename();
     }
 

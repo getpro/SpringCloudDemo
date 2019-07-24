@@ -13,20 +13,20 @@ import org.springframework.web.multipart.MultipartFile;
 /**
  * Created by irskj on 2019/1/10.
  */
-@FeignClient(value = "api-gateway",fallback = DemoApiServiceHystrixImpl.class,configuration = DemoApiService.MultipartSupportConfig.class,path = "/v1/demoapi")
+@FeignClient(value = "api-gateway", fallback = DemoApiServiceHystrixImpl.class, configuration = DemoApiService.MultipartSupportConfig.class, path = "/v1/demoapi")
 public interface DemoApiService {
 
     @GetMapping("/hello")
     String hello(@RequestParam("accessToken") String accessToken);
 
-    @PostMapping(value = "/upload",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     String upload(@RequestPart(value = "file") MultipartFile file);
 
     @Configuration
-    class MultipartSupportConfig{
+    class MultipartSupportConfig {
 
         @Bean
-        public Encoder feignFormEncoder(){
+        public Encoder feignFormEncoder() {
             return new SpringFormEncoder();
         }
     }

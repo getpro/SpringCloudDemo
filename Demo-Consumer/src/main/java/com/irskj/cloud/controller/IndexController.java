@@ -20,7 +20,7 @@ import java.io.*;
  */
 @RestController
 @RefreshScope
-public class IndexController extends BaseAbstractController{
+public class IndexController extends BaseAbstractController {
 
     @Autowired
     private DemoApiService demoApiService;
@@ -30,46 +30,49 @@ public class IndexController extends BaseAbstractController{
 
     /**
      * 远程服务
+     *
      * @return
      */
     @GetMapping("/hello")
-    public String hello(String accessToken){
+    public String hello(String accessToken) {
         return demoApiService.hello(accessToken);
     }
 
     /**
      * 远程配置
+     *
      * @return
      */
     @GetMapping("/info")
-    public Object info(){
+    public Object info() {
         return info;
     }
 
     /**
      * 远程服务上传
+     *
      * @return
      * @throws IOException
      */
     @GetMapping("/upload")
     public String upload() throws IOException {
         File file = new File("test.txt");
-        if(!file.exists()){
+        if (!file.exists()) {
             file.createNewFile();
         }
         DiskFileItem fileItem = (DiskFileItem) new DiskFileItemFactory().
-                createItem("file", MediaType.TEXT_PLAIN_VALUE,true,file.getName());
-        try (InputStream inputStream = new FileInputStream(file); OutputStream outputStream=fileItem.getOutputStream()){
-            IOUtils.copy(inputStream,outputStream);
-        }catch (Exception e){
-            throw new IllegalArgumentException("Invalid File："+e,e);
+                createItem("file", MediaType.TEXT_PLAIN_VALUE, true, file.getName());
+        try (InputStream inputStream = new FileInputStream(file); OutputStream outputStream = fileItem.getOutputStream()) {
+            IOUtils.copy(inputStream, outputStream);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid File：" + e, e);
         }
         MultipartFile multipartFile = new CommonsMultipartFile(fileItem);
         String result = demoApiService.upload(multipartFile);
-        if(result==null){
+        if (result == null) {
             result = "失败";
         }
-        logger.info("############# 上传文件成功：{} ###############",result);
+        logger.info("############# 上传文件成功：{} ###############", result);
         return result;
     }
 

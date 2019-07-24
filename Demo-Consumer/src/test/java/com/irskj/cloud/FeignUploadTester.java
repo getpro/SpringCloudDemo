@@ -32,23 +32,23 @@ public class FeignUploadTester {
 
     @Test
     @SneakyThrows
-    public void testUpload(){
+    public void testUpload() {
         File file = new File("test.txt");
-        if(!file.exists()){
+        if (!file.exists()) {
             file.createNewFile();
         }
         DiskFileItem fileItem = (DiskFileItem) new DiskFileItemFactory().
-                createItem("file", MediaType.TEXT_PLAIN_VALUE,true,file.getName());
-        try (InputStream inputStream = new FileInputStream(file); OutputStream outputStream=fileItem.getOutputStream()){
-            IOUtils.copy(inputStream,outputStream);
-        }catch (Exception e){
-            throw new IllegalArgumentException("Invalid File："+e,e);
+                createItem("file", MediaType.TEXT_PLAIN_VALUE, true, file.getName());
+        try (InputStream inputStream = new FileInputStream(file); OutputStream outputStream = fileItem.getOutputStream()) {
+            IOUtils.copy(inputStream, outputStream);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Invalid File：" + e, e);
         }
         MultipartFile multipartFile = new CommonsMultipartFile(fileItem);
         String result = demoApiService.upload(multipartFile);
-        if(result==null){
+        if (result == null) {
             result = "失败";
         }
-        log.info("############# 上传文件成功：{} ###############",result);
+        log.info("############# 上传文件成功：{} ###############", result);
     }
 }

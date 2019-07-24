@@ -15,8 +15,8 @@ public class IndexController {
 
     @GetMapping("/hello")
     @PreAuthorize("hasRole('ADMIN')")
-    public String hello(){
+    public String hello() {
 
-        return "hello："+ SecurityUtils.getCurrentUser();
+        return "hello：" + SecurityUtils.getCurrentUser();
     }
 }

@@ -13,8 +13,8 @@ import org.springframework.cloud.stream.messaging.Sink;
 public class SinkReceiver {
 
     @StreamListener(LoginBinder.name)
-    public void receive(String payload){
+    public void receive(String payload) {
 
-        log.info("Consumer2：{}",payload);
+        log.info("Consumer2：{}", payload);
     }
 }

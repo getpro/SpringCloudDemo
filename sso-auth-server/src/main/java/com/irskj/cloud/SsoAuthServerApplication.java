@@ -11,22 +11,22 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Slf4j
 @Configuration
 @SpringBootApplication
-public class SsoAuthServerApplication{
+public class SsoAuthServerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SsoAuthServerApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SsoAuthServerApplication.class, args);
+    }
 
 
-	@Bean
-	public WebMvcConfigurer webMvcConfigurer(){
-		return new WebMvcConfigurer() {
-			@Override
-			public void addViewControllers(ViewControllerRegistry registry) {
-				log.info("############ add view #################");
-			}
-		};
-	}
+    @Bean
+    public WebMvcConfigurer webMvcConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addViewControllers(ViewControllerRegistry registry) {
+                log.info("############ add view #################");
+            }
+        };
+    }
 
 }
 

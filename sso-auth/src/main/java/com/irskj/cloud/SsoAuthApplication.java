@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class SsoAuthApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SsoAuthApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(SsoAuthApplication.class, args);
+    }
 
 }
 

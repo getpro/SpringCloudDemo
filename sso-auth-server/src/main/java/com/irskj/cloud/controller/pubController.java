@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class pubController {
 
     @GetMapping("/test")
-    public String test(){
+    public String test() {
         return "public api";
     }
 }

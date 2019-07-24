@@ -14,7 +14,7 @@ import java.util.List;
 //@Configuration
 public class HystrixConf {
     @Bean
-    public ServletRegistrationBean getServlet(){
+    public ServletRegistrationBean getServlet() {
         HystrixMetricsStreamServlet streamServlet = new HystrixMetricsStreamServlet();
         ServletRegistrationBean regBean = new ServletRegistrationBean(streamServlet);
         regBean.setLoadOnStartup(1);

@@ -18,7 +18,7 @@ public class SenderTest {
     private LoginSender loginSender;
 
     @Test
-    public void sinkSenderTest(){
+    public void sinkSenderTest() {
         loginSender.output().send(MessageBuilder.withPayload("测试消息").build());
     }
 }

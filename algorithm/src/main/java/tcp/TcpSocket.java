@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class TcpSocket {
     public static void main(String[] args) throws IOException {
 
-        ClientTcp tcp = new ClientTcp("192.168.4.1",333);
+        ClientTcp tcp = new ClientTcp("192.168.4.1", 333);
         tcp.setMsgListener(new ClientTcp.MsgListener() {
             @Override
             public void onMsg(ClientTcp.Command command, ClientTcp client) {
@@ -23,13 +23,13 @@ public class TcpSocket {
         command.setCheck("AA");
         command.setType("02");
         command.setHead("AA");
-        while (flag){
+        while (flag) {
             System.out.print("请输入：");
             Scanner scanner = new Scanner(System.in);
             String read = scanner.nextLine();
-            switch (read){
+            switch (read) {
                 case "0":
-                    flag=false;
+                    flag = false;
                     tcp.close();
                     break;
                 case "1":

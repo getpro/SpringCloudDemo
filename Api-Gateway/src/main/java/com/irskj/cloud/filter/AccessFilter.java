@@ -35,14 +35,14 @@ public class AccessFilter extends ZuulFilter {
         HttpServletRequest request = requestContext.getRequest();
         String accessToken = request.getParameter("accessToken");
         String path = request.getServletPath();
-        logger.info("访问路径：{}",request.getServletPath());
-        if(path.contains("api-docs")){
+        logger.info("访问路径：{}", request.getServletPath());
+        if (path.contains("api-docs")) {
             return null;
         }
-        if(path.contains("demoapi2")){
+        if (path.contains("demoapi2")) {
             return null;
         }
-        if(accessToken==null){
+        if (accessToken == null) {
             requestContext.setSendZuulResponse(false);
             requestContext.setResponseStatusCode(401);
             logger.info("accessToken not found!");

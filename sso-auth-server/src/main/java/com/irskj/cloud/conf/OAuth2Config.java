@@ -41,7 +41,7 @@ public class OAuth2Config extends AuthorizationServerConfigurerAdapter {
         clients.inMemory()
                 .withClient("clientid")
                 .secret("clientsecret")
-                .authorizedGrantTypes("password","authorization_code", "refresh_token")
+                .authorizedGrantTypes("password", "authorization_code", "refresh_token")
                 .scopes("openid");
     }
 

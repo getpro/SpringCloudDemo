@@ -7,7 +7,7 @@ import org.springframework.messaging.MessageChannel;
  * Created by irskj on 2019/1/11.
  */
 public interface LoginSendBinder {
-    String NAME="login-topic";
+    String NAME = "login-topic";
 
     @Output(NAME)
     MessageChannel output();

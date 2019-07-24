@@ -20,13 +20,13 @@ import java.util.Map;
 public class LoginController {
 
     @GetMapping("/login")
-    public ModelAndView login(){
+    public ModelAndView login() {
         log.info("############  login  #################");
         return new ModelAndView("login1.html");
     }
 
     @GetMapping("/error")
-    public String error(){
+    public String error() {
         return "error.html";
     }
 

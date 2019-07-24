@@ -9,9 +9,9 @@ import org.springframework.cloud.sleuth.sampler.SamplerProperties;
 @SpringBootApplication
 public class DemoApi3Application {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DemoApi3Application.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DemoApi3Application.class, args);
+    }
 
 }
 

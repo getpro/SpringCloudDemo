@@ -7,11 +7,11 @@ import java.util.Random;
  */
 public class GenaratorArrays {
 
-    public static int[] gen(int max){
+    public static int[] gen(int max) {
         int arr[] = new int[max];
 
-        for(int i=0;i<max;i++){
-            arr[i]=new Random().nextInt(max);
+        for (int i = 0; i < max; i++) {
+            arr[i] = new Random().nextInt(max);
         }
         return arr;
     }

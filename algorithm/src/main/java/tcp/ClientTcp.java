@@ -7,19 +7,19 @@ import java.net.Socket;
  * TCP 客户端
  * Created by irskj on 2019/1/23.
  */
-public class ClientTcp implements Closeable{
+public class ClientTcp implements Closeable {
     private boolean runing = false;
     private Socket socket;
     private String host;
     private int port;
     private MsgListener msgListener;
 
-    public ClientTcp(String host,int port){
+    public ClientTcp(String host, int port) {
         this.port = port;
         this.host = host;
     }
 
-    public void setMsgListener(MsgListener msgListener){
+    public void setMsgListener(MsgListener msgListener) {
         this.msgListener = msgListener;
     }
 
@@ -39,14 +39,14 @@ public class ClientTcp implements Closeable{
         ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
         oos.write(command.toBytes());
         oos.flush();
-        System.out.println("发送指令："+command.toString());
+        System.out.println("发送指令：" + command.toString());
     }
 
     public void start() throws IOException {
-        if(runing) {
+        if (runing) {
             return;
         }
-        socket = new Socket(host,port);
+        socket = new Socket(host, port);
         runing = true;
         new Thread(new ReceiveWatch()).start();
     }
@@ -58,21 +58,21 @@ public class ClientTcp implements Closeable{
     }
 
 
-    class ReceiveWatch implements Runnable{
+    class ReceiveWatch implements Runnable {
         @Override
         public void run() {
-            while (runing){
+            while (runing) {
                 try {
                     //获取Socket的输入流，用来接收从客户端发送过来的数据
                     InputStream in = socket.getInputStream();
-                    if(in.available()>0){
+                    if (in.available() > 0) {
                         byte[] bytes = new byte[in.available()];
                         in.read(bytes);
-                        if(msgListener!=null){
-                            msgListener.onMsg(new Command(bytes),ClientTcp.this);
+                        if (msgListener != null) {
+                            msgListener.onMsg(new Command(bytes), ClientTcp.this);
                         }
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                     try {
                         ClientTcp.this.close();
@@ -87,32 +87,32 @@ public class ClientTcp implements Closeable{
     /**
      * 监听消息
      */
-    public interface MsgListener{
-        void onMsg(Command command,ClientTcp client);
+    public interface MsgListener {
+        void onMsg(Command command, ClientTcp client);
     }
 
-    public static class Command{
-        private String head="AA"; //1byte
-        private String type="02";// 1 byte
-        private String id="";// 4 byte
+    public static class Command {
+        private String head = "AA"; //1byte
+        private String type = "02";// 1 byte
+        private String id = "";// 4 byte
         private String cm; // 1 byte
         private String len;// 1 byte
         private String data; // n byte
-        private String check="AA";//2byte
+        private String check = "AA";//2byte
 
         public Command() {
         }
 
-        public Command(byte[] bytes){
+        public Command(byte[] bytes) {
             decode(bytesToHexString(bytes));
         }
 
-        public Command decode(String msg){
-            id = msg.substring((1+1)*2,(1+1+4)*2);
-            cm = msg.substring((1+1+4)*2,(1+1+4+1)*2);
-            len = msg.substring((1+1+4+1)*2,(1+1+4+1+1)*2);
-            data = msg.substring((1+1+4+1+1)*2,msg.length()-2);
-            check = msg.substring(msg.length()-2);
+        public Command decode(String msg) {
+            id = msg.substring((1 + 1) * 2, (1 + 1 + 4) * 2);
+            cm = msg.substring((1 + 1 + 4) * 2, (1 + 1 + 4 + 1) * 2);
+            len = msg.substring((1 + 1 + 4 + 1) * 2, (1 + 1 + 4 + 1 + 1) * 2);
+            data = msg.substring((1 + 1 + 4 + 1 + 1) * 2, msg.length() - 2);
+            check = msg.substring(msg.length() - 2);
             return this;
         }
 
@@ -164,24 +164,24 @@ public class ClientTcp implements Closeable{
             this.check = check;
         }
 
-        public String encode(){
-            len = integerToHex(data.length()/2);
-            return head+type+id+cm+len+data+check;
+        public String encode() {
+            len = integerToHex(data.length() / 2);
+            return head + type + id + cm + len + data + check;
         }
 
-        public byte[] toBytes(){
+        public byte[] toBytes() {
             return hexStringToBytes(encode());
         }
 
         @Override
         public String toString() {
             return "{ " +
-                    "head:"+head+", " +
-                    "type:"+type+", " +
-                    "id:"+id+", " +
-                    "cm:"+cm+", " +
-                    "data:"+data+", " +
-                    "check:"+check+
+                    "head:" + head + ", " +
+                    "type:" + type + ", " +
+                    "id:" + id + ", " +
+                    "cm:" + cm + ", " +
+                    "data:" + data + ", " +
+                    "check:" + check +
                     " }";
         }
     }

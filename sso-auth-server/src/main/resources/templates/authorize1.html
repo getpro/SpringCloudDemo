@@ -1,6 +1,7 @@
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/twitter-bootstrap/4.2.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdn.staticfile.org/twitter-bootstrap/4.2.1/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
 </head>
@@ -9,18 +10,19 @@
     <h2>Please Confirm</h2>
 
     <p>
-        Do you authorize "${authorizationRequest.clientId}" at "${authorizationRequest.redirectUri}" to access your protected resources
+        Do you authorize "${authorizationRequest.clientId}" at "${authorizationRequest.redirectUri}" to access your
+        protected resources
         with scope ${authorizationRequest.scope?join(", ")}.
     </p>
     <form id="confirmationForm" name="confirmationForm"
           action="../oauth/authorize" method="post">
-        <input name="user_oauth_approval" value="true" type="hidden" />
+        <input name="user_oauth_approval" value="true" type="hidden"/>
         <input type="hidden" id="csrf_token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button class="btn btn-primary" type="submit">Approve</button>
     </form>
     <form id="denyForm" name="confirmationForm"
           action="../oauth/authorize" method="post">
-        <input name="user_oauth_approval" value="false" type="hidden" />
+        <input name="user_oauth_approval" value="false" type="hidden"/>
         <input type="hidden" id="csrf_token" name="${_csrf.parameterName}" value="${_csrf.token}"/>
         <button class="btn btn-primary" type="submit">Deny</button>
     </form>
