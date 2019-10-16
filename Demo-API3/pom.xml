@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.irskj.cloud</groupId>
     <artifactId>demo-api3</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>Demo-API3</name>
     <description>接口提供服务demo3</description>
 
@@ -101,6 +101,7 @@
 	</repositories>
 
     <build>
+        <finalName>${project.artifactId}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

@@ -1,0 +1,19 @@
+stages:
+ - dev
+ - test
+ - prod
+
+#生产环境部署
+prod:
+  stage: prod
+  script:
+   - pwd
+   - echo start build
+   - mvn clean package
+   - echo ========= build success ==========
+   - docker stop ctr-report
+   - docker rm ctr-report
+   - docker-compose   -f ./docker-compose-dev.yml up -d --build ctr-report
+   - echo ========= deploy success ==========
+  only:
+  - master
