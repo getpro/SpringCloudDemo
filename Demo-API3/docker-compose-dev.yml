@@ -1,6 +1,6 @@
 services:
   #custom
-  ctr-custom:
+  demo-api3:
     build:
       context: ./
       dockerfile: ./Dockerfile
@@ -16,6 +16,3 @@ services:
       - "8081:6010"
     environment:
       MYSQL_DB: ctr_report
-networks:
-  ctr_cloud:
-    external: true
