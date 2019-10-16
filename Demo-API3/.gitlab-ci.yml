@@ -11,9 +11,9 @@ prod:
    - echo start build
    - mvn clean package
    - echo ========= build success ==========
-   - docker stop ctr-report
-   - docker rm ctr-report
-   - docker-compose   -f ./docker-compose-dev.yml up -d --build ctr-report
+   - docker stop demo-api3
+   - docker rm demo-api3
+   - docker-compose   -f ./docker-compose-dev.yml up -d --build demo-api3
    - echo ========= deploy success ==========
   only:
   - master
