@@ -4,11 +4,15 @@ NACOS_PORT: 8086
 HOST_NAME:
 CTR_VERSION: ZYQ
 
+server:
+  port: 6000
 spring:
   application:
-    name: Demo-API3
+    name: DemoAPI
+  zipkin:
+    base-url: http://localhost:6011
   profiles:
-    active: dev
+    active: @profiles.active@
   cloud:
     nacos:
       discovery:
@@ -19,10 +23,5 @@ spring:
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
         shared-dataids: application-${spring.profiles.active}.yml
-  sleuth:
-    sampler:
-      probability: 1
-  zipkin:
-    base-url: http://localhost:6011
-server:
-  port: 6010
+swagger:
+  base-package: com.irskj.cloud

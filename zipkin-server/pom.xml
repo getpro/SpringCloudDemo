@@ -70,7 +70,20 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
+<!-- 使用ALiYun镜像 -->
+	<repositories>
+		
+		<repository>
+			<id>ALiYun</id>
+			<name>ALiYun</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+		</repository>
+		<repository>
+			<id>central</id>
+			<url>http://repo1.maven.org/maven2/</url>
+			<name>central</name>
+		</repository>
+	</repositories>
     <build>
         <plugins>
             <plugin>

@@ -4,11 +4,16 @@ NACOS_PORT: 8086
 HOST_NAME:
 CTR_VERSION: ZYQ
 
+
+server:
+  port: 6006
 spring:
-  application:
-    name: Demo-API3
+  main:
+    allow-bean-definition-overriding: true
   profiles:
     active: dev
+  application:
+    name: api-gateway
   cloud:
     nacos:
       discovery:
@@ -19,10 +24,15 @@ spring:
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
         shared-dataids: application-${spring.profiles.active}.yml
-  sleuth:
-    sampler:
-      probability: 1
-  zipkin:
-    base-url: http://localhost:6011
-server:
-  port: 6010
+zuul:
+  routes:
+    demoapi:
+      path: /demoapi/**
+      serviceId: Demo-API
+    demoapi2:
+      path: /demoapi2/**
+      serviceId: Demo-API3
+  prefix: /v1
+ribbon:
+  eager-load:
+    enabled: true

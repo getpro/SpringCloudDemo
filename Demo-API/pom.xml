@@ -31,12 +31,17 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-
-        <!-- 服务注册客户端 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+            <version>0.2.1.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+            <version>0.2.1.RELEASE</version>
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -93,37 +98,40 @@
     <!-- 多环境配置 jar启动 spring.profiles.active=app1 -->
     <profiles>
         <profile>
-            <id>default</id>
+            <id>dev</id>
             <properties>
-                <profiles.active>default</profiles.active>
+                <profiles.active>dev</profiles.active>
             </properties>
             <activation>
                 <!-- 设置默认激活这个配置 -->
                 <activeByDefault>true</activeByDefault>
             </activation>
         </profile>
-        <profile>
-            <id>app1</id>
-            <properties>
-                <profiles.active>app1</profiles.active>
-            </properties>
-        </profile>
-        <profile>
-            <id>app2</id>
-            <properties>
-                <profiles.active>app2</profiles.active>
-            </properties>
-        </profile>
-        <profile>
-            <id>app3</id>
-            <properties>
-                <profiles.active>app3</profiles.active>
-            </properties>
-        </profile>
     </profiles>
+
+	<!-- 使用ALiYun镜像 -->
+	<repositories>
+
+		<repository>
+			<id>ALiYun</id>
+			<name>ALiYun</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public</url>
+		</repository>
+		<repository>
+			<id>central</id>
+			<url>http://repo1.maven.org/maven2/</url>
+			<name>central</name>
+		</repository>
+	</repositories>
 
     <build>
         <finalName>demo-api</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
