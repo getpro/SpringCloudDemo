@@ -6,13 +6,11 @@ services:
       dockerfile: ./Dockerfile
     restart: always
     networks:
-      ctr_cloud:
-        aliases:
-          - demo-api3
-    hostname: demo-api3
+      - my-bridge
     container_name: demo-api3
     image: 39.108.120.63:8090/demo-api3:latest
     ports:
       - "8081:6010"
-    environment:
-      MYSQL_DB: ctr_report
+networks:
+  my-bridge:
+    driver: bridge
