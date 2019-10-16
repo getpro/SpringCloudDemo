@@ -23,4 +23,9 @@ public class IndexController {
         log.info("call demoapi2:hello");
         return hello+" >> demoapi2：" + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(Calendar.getInstance().getTime());
     }
+
+    @GetMapping("/test")
+    public String test() {
+        return "Test Update";
+    }
 }
